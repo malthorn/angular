@@ -1,0 +1,49 @@
+
+<div>
+  <mat-checkbox #selectAfterAdding></mat-checkbox>
+</div>
+
+<mat-tab-group [selectedIndex]="selected.value"
+               (selectedIndexChange)="selected.setValue($event)">
+  <mat-tab>
+      <ng-template mat-tab-label>
+          Front page
+        </ng-template>
+      Welcome to my app :)
+    <button mat-raised-button
+    class="example-add-tab-button"
+    (click)="addTab('Dashboard 1')">
+      Open Dashboard 1
+  </button>
+  <button mat-raised-button
+  class="example-add-tab-button"
+  (click)="addTab('Dashboard 2')">
+    Open Dashboard 2
+</button>
+  </mat-tab>
+  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+      <ng-template mat-tab-label>
+          {{tab}} 
+          <button mat-icon-button
+          class="example-delete-tab-button"
+          [disabled]="tabs.length === 0"
+          (click)="removeTab(index)">
+    <mat-icon>close</mat-icon>
+  </button>
+        </ng-template>
+    <app-app-dashboard></app-app-dashboard>
+
+    Contents for {{tab}} tab
+    <button mat-raised-button
+    class="example-add-tab-button"
+    (click)="addTab(selectAfterAdding.checked)">
+Add new tab
+</button>
+    <button mat-raised-button
+            class="example-delete-tab-button"
+            [disabled]="tabs.length === 0"
+            (click)="removeTab(index)">
+      Delete Tab
+    </button>
+  </mat-tab>
+</mat-tab-group>
